@@ -31,7 +31,7 @@ function TaskForm({ setTasks }) {
     const newTask = { title, description, status, dueDate, daysRemaining: calculateDaysRemaining(dueDate) };
 
     try {
-      const response = await fetch("http://localhost:5000/api/tasks", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/tasks`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

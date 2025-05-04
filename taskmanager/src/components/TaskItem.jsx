@@ -12,7 +12,7 @@ function TaskItem({ task, setTasks }) {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:5000/api/tasks/${task._id}`);
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/tasks/${task._id}`);
       setTasks((prevTasks) => prevTasks.filter((t) => t._id !== task._id));
     } catch (error) {
       console.error("Error deleting task", error);
@@ -30,9 +30,9 @@ function TaskItem({ task, setTasks }) {
   const handleSave = async () => {
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/tasks/${task._id}`,
+        `${import.meta.env.VITE_API_URL}/api/tasks/${task._id}`,
         editedTask
-      );
+      );      
       setTasks((prevTasks) =>
         prevTasks.map((t) => (t._id === task._id ? response.data : t))
       );
